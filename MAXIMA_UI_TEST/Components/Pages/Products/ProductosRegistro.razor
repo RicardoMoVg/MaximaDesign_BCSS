@@ -1,84 +1,95 @@
-﻿@page "/registro-producto"
+﻿@page "/productos/registro"
 @rendermode InteractiveServer
-@* Asumo que el navbar está en el namespace principal o en Shared *@
-@using MaximaDesignSystem 
+@using MaximaDesignSystem
+@using MaximaDesignSystem.MB_Library
 @inject NavigationManager Navigation
 
-<div class="layout-wrapper">
-    <div class="sidebar-area">
-        <ReusableSidebar Opciones="@PasosRegistro" 
-                         OpcionSeleccionada="@PasoActual" 
-                         OnSeleccion="CambiarPaso" />
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">Datos de producto</h2>
+        <MbButton Color="MbButton.ButtonColor.Light" Class="border">
+            Editar <i class="bi bi-pencil ms-2"></i>
+        </MbButton>
     </div>
 
-    <div class="content-area">
-        <h2 class="page-header">Registro de producto</h2>
-
-        <div class="main-card">
-            <div class="form-section-header">
-                <h3>Identificadores de producto.</h3>
-                <p>Rellene todos los campos obligatorios</p>
+    <div class="card shadow-sm border-0 overflow-hidden" style="min-height: 600px;">
+        <div class="row g-0 h-100">
+            
+            <div class="col-md-2 border-end bg-light">
+                <FormSideNav 
+                    Opciones="PasosDelFormulario"
+                    OpcionSeleccionada="@PasoActual"
+                    OnSeleccion="CambiarPaso" />
             </div>
 
-            <div class="form-body">
+            <div class="col-md-10 bg-white p-5">
                 
-                <div class="form-row">
-                    <label class="row-label">Comercio <span class="red">*</span></label>
-                    <div class="input-container">
-                        <select class="styled-input">
-                            <option selected disabled></option>
-                            <option>Máxima</option>
-                            <option>Otro</option>
-                        </select>
-                        <span class="helper-text">Comercio para el que se compra el producto.</span>
-                        <span class="select-icon">↕</span> 
+                <h4 class="fw-bold text-dark mb-4">@PasoActual</h4>
+                <hr class="mb-4 text-muted opacity-25" />
+
+                @if (PasoActual == "Identificadores de producto")
+                {
+                    <div class="animate-fade-in">
+                        <div class="p-4 rounded border" style="background-color: #f8f9fa;">
+                            <form>
+                                <div class="mb-3 row align-items-center">
+                                    <label class="col-sm-3 col-form-label fw-bold text-end">Comercio <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select border-0 shadow-sm">
+                                            <option>Comercio para el que se compra...</option>
+                                            <option>Amazon</option>
+                                            <option>Walmart</option>
+                                        </select>
+                                        <div class="form-text text-muted small mt-1">Comercio para el que se compra el producto.</div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 row align-items-center">
+                                    <label class="col-sm-3 col-form-label fw-bold text-end">ASIN <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control border-0 shadow-sm" placeholder="">
+                                        <div class="form-text text-muted small mt-1">Identificador único de Amazon.</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 row align-items-center">
+                                    <label class="col-sm-3 col-form-label fw-bold text-end">FNSKU <span class="text-danger">*</span></label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control border-0 shadow-sm" placeholder="">
+                                        <div class="form-text text-muted small mt-1">Identificador interno de inventario.</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                }
+                else if (PasoActual == "Detalles básicos")
+                {
+                    <div class="alert alert-light border">Contenido de Detalles Básicos...</div>
+                }
+                else
+                {
+                    <div class="d-flex flex-column align-items-center justify-content-center h-50 text-muted">
+                        <i class="bi bi-cone-striped fs-1 mb-3"></i>
+                        <p>El formulario para <strong>@PasoActual</strong> está en construcción.</p>
+                    </div>
+                }
+
+                <div class="d-flex justify-content-end mt-5 pt-3 border-top">
+                    <MbButton Color="MbButton.ButtonColor.Dark" Class="px-4 py-2 rounded-pill">
+                        Siguiente <i class="bi bi-chevron-right ms-2"></i>
+                    </MbButton>
                 </div>
 
-                <div class="form-row">
-                    <label class="row-label">ASIN <span class="red">*</span></label>
-                    <div class="input-container">
-                        <input type="text" class="styled-input" />
-                        <span class="helper-text">Identificador único de Amazon.</span>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <label class="row-label">FNSKU <span class="red">*</span></label>
-                    <div class="input-container">
-                        <input type="text" class="styled-input" />
-                        <span class="helper-text">Identificador interno de inventario.</span>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <label class="row-label">EAN</label>
-                    <div class="input-container">
-                        <input type="text" class="styled-input" />
-                        <span class="helper-text">European Article Number (12 dígitos)</span>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <label class="row-label">UPC</label>
-                    <div class="input-container">
-                        <input type="text" class="styled-input" />
-                        <span class="helper-text">Universal Product Code (13 dígitos)</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="card-footer">
-                <button class="btn-next">Siguiente &gt;</button>
-            </div>
-        </div>
+            </div> </div>
     </div>
 </div>
 
 @code {
-    // Lista exacta de opciones basada en tu imagen
-    private List<string> PasosRegistro = new List<string> {
+    private string PasoActual = "Identificadores de producto";
+
+    private List<string> PasosDelFormulario = new()
+    {
         "Identificadores de producto",
         "Detalles básicos",
         "Imágenes del producto",
@@ -89,11 +100,8 @@
         "Datos de Importación"
     };
 
-    private string PasoActual = "Identificadores de producto";
-
-    private void CambiarPaso(string paso)
+    private void CambiarPaso(string nuevoPaso)
     {
-        PasoActual = paso;
-        // Lógica para cambiar de vista si fuera necesario
+        PasoActual = nuevoPaso;
     }
 }

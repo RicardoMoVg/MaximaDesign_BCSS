@@ -1,11 +1,10 @@
-﻿@page "/registro-c"
+﻿@page "/registro-compras"
+@rendermode InteractiveServer
+@using MaximaDesignSystem
+@inject NavigationManager Navigation
+
 
 <div class="registro-container">
-    <div class="sidebar-column">
-        <ReusableSidebar Opciones="@MenuOpciones" 
-                         OpcionSeleccionada="@OpcionActiva" 
-                         OnSeleccion="HandleSeleccion" />
-    </div>
 
     <div class="content-column">
         <h2 class="page-title">Registrar compra</h2>

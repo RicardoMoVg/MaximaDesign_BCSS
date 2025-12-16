@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36717.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximaDesignSystem", "MaximaDesignSystem\MaximaDesignSystem.csproj", "{56E3DE54-80F9-4F11-97E3-70F546D5655F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAXIMA_UI_TEST", "..\..\..\MAXIMA_UI_TEST\MAXIMA_UI_TEST.csproj", "{AEEBFBB5-939B-4772-8C64-538EACB43FF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAXIMA_UI_TEST", "MAXIMA_UI_TEST\MAXIMA_UI_TEST.csproj", "{AEEBFBB5-939B-4772-8C64-538EACB43FF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,40 @@
+﻿@* MaximaDesignSystem/MB_Library/FormSideNav.razor *@
+@namespace MaximaDesignSystem.MB_Library
+
+<div class="form-sidenav-container">
+    @foreach (var item in Opciones)
+    {
+        var isActive = OpcionSeleccionada == item;
+        
+        <div class="sidenav-item @(isActive ? "active" : "")" 
+             @onclick="() => Seleccionar(item)">
+            
+            <span class="item-text">@item</span>
+            
+            @if (isActive)
+            {
+                <div class="active-indicator"></div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public List<string> Opciones { get; set; } = new();
+
+    [Parameter]
+    public string OpcionSeleccionada { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnSeleccion { get; set; }
+
+    private async Task Seleccionar(string item)
+    {
+        if (OpcionSeleccionada != item)
+        {
+            OpcionSeleccionada = item;
+            await OnSeleccion.InvokeAsync(item);
+        }
+    }
+}

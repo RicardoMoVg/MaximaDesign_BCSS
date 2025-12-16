@@ -1,20 +1,27 @@
 ﻿@inherits LayoutComponentBase
 @using MaximaDesignSystem
+@* Asegúrate de tener Bootstrap Icons o FontAwesome para el icono de lista *@
 
-<div class="page d-flex">
+<div class="page d-flex h-100 overflow-hidden">
 
-    <div class="sidebar" style="width: 250px; flex-shrink: 0;">
+    <div class="sidebar d-none d-lg-block border-end bg-white" style="width: 250px; flex-shrink: 0;">
         <NavMenu />
     </div>
 
-    <main class="flex-grow-1" style="min-width: 0;">
+    <main class="flex-grow-1 d-flex flex-column" style="min-width: 0;">
 
-        <div class="d-flex align-items-center justify-content-center px-4 py-3 bg-white border-bottom position-relative">
-            <div style="width: 100%; max-width: 600px;">
-                <CampoBusqueda Placeholder="" />
+        <div class="d-flex align-items-center justify-content-between px-4 py-3 bg-white border-bottom position-relative">
+            
+            <button class="btn btn-light d-lg-none me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+                <i class="bi bi-list fs-4"></i> </button>
+
+            <div class="flex-grow-1 me-3" style="max-width: 600px;">
+                <CampoBusqueda Placeholder="Buscar..." />
             </div>
-            <div class="position-absolute top-50 end-0 translate-middle-y pe-4 d-flex align-items-center">
-                <span class="d-block fw-bold text-dark me-2">Bienvenido, <span style="color: #0099CC;">Usuario</span></span>
+
+            <div class="d-flex align-items-center flex-shrink-0">
+                <span class="d-none d-md-block fw-bold text-dark me-2">Bienvenido, <span style="color: #0099CC;">Usuario</span></span>
+                
                 <div class="rounded-circle bg-secondary bg-opacity-10 d-flex justify-content-center align-items-center"
                      style="width: 40px; height: 40px; color: #6c757d;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -24,13 +31,23 @@
             </div>
         </div>
 
-        <article class="content px-4 mt-4">
+        <article class="content px-4 mt-4 flex-grow-1 overflow-auto">
             @Body
         </article>
     </main>
 
-    <div class="barra-extra" style="flex-shrink: 0;">
+    <div class="barra-extra d-none d-xxl-block border-start bg-white" style="width: 60px; flex-shrink: 0;">
         <BarraHerramientas />
     </div>
 
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+    <div class="offcanvas-header border-bottom">
+        <h5 class="offcanvas-title fw-bold" id="mobileMenuLabel">Menú</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <NavMenu />
+    </div>
 </div>
