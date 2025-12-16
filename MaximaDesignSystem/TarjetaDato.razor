@@ -1,0 +1,12 @@
+﻿<div class="tarjeta-dato">
+    <div class="dato-titulo">@Titulo</div>
+    <div class="dato-valor">@Valor</div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Titulo { get; set; } = "Título";
+
+    [Parameter, EditorRequired]
+    public string Valor { get; set; } = "$0";
+}

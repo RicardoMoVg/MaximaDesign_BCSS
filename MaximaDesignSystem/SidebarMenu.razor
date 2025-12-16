@@ -1,0 +1,31 @@
+﻿<div class="sidebar-container">
+    @foreach (var item in Opciones)
+    {
+        <div class="menu-item @(OpcionSeleccionada == item ? "selected" : "")"
+             @onclick="() => Seleccionar(item)">
+
+            <span class="item-content">@item</span>
+
+        </div>
+    }
+</div>
+
+@code {
+    // 1. RECIBIMOS los datos: Una lista de strings (o podría ser una lista de objetos)
+    [Parameter]
+    public List<string> Opciones { get; set; } = new();
+
+    // 2. RECIBIMOS cuál está activa inicialmente (opcional)
+    [Parameter]
+    public string OpcionSeleccionada { get; set; }
+
+    // 3. AVISAMOS al padre cuando algo cambia
+    [Parameter]
+    public EventCallback<string> OnSeleccion { get; set; }
+
+    private async Task Seleccionar(string item)
+    {
+        OpcionSeleccionada = item; // Actualizamos visualmente
+        await OnSeleccion.InvokeAsync(item); // Avisamos al componente padre
+    }
+}

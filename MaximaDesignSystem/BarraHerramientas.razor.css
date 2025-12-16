@@ -1,0 +1,35 @@
+﻿.barra-herramientas {
+    /* Dimensiones y Posición */
+    width: 60px;
+    /* Ancho fijo estrecho */
+    height: 100vh;
+    /* Altura completa de la pantalla */
+
+    /* GLASSMORPHISM */
+    background: rgba(31, 41, 55, 0.95);
+    /* Fondo oscuro semi-transparente */
+    backdrop-filter: blur(12px);
+    /* Desefonque para efecto cristal */
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+    display: flex;
+    flex-direction: column;
+    /* Uno debajo del otro */
+    align-items: center;
+    /* Centrados horizontalmente */
+    padding-top: 1.5rem;
+    /* Espacio arriba */
+    gap: 1.5rem;
+    /* Espacio entre botones */
+
+    /* Sombra para darle profundidad sobre el contenido */
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    /* Asegura que esté por encima si es necesario */
+}
+
+/* 
+   Los estilos de los botones ahora son manejados por BotonNavegacion.razor.css
+   Esto asegura consistencia y reutilización.
+*/

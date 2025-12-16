@@ -1,0 +1,44 @@
+﻿/* TarjetaIcono.razor.css */
+
+.tarjeta-icono {
+    background-color: #ffffff;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+    /* --- CAMBIOS PARA TAMAÑO UNIFORME --- */
+    height: 100%; /* Obliga a la tarjeta a llenar toda la altura de la columna */
+    display: flex; /* Usamos Flexbox para organizar el contenido verticalmente */
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    min-height: 220px; /* Altura mínima para que se vean uniformes */
+}
+
+    .tarjeta-icono:hover {
+        border-color: var(--bs-primary, #0d6efd);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+    }
+
+.contenedor-icono {
+    margin-bottom: 1.5rem;
+    color: #000; 
+}
+
+    .contenedor-icono ::deep svg {
+        width: 64px;
+        height: 64px;
+        fill: none !important; 
+        stroke: currentColor; 
+        stroke-width: 1.5px; 
+    }
+
+.titulo {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #212529;
+    margin: 0;
+}

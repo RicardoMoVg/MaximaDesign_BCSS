@@ -1,0 +1,54 @@
+﻿@* MaximaDesignSystem/MB_Library/MbTable.razor *@
+@typeparam TItem
+
+<div class="table-responsive">
+    @* Aplicamos clases de Bootstrap base y tus clases personalizadas si las necesitas *@
+    <table class="table table-hover table-striped align-middle mb-0 @Class">
+        <thead class="table-light">
+            <tr>
+                @* Aquí se inyectarán los títulos de las columnas *@
+                @HeaderContent
+            </tr>
+        </thead>
+        <tbody>
+            @* Iteramos sobre la lista de datos que recibamos *@
+            @if (Items != null)
+            {
+                foreach (var item in Items)
+                {
+                    <tr>
+                        @* Aquí se inyectará el diseño de la fila para CADA ítem *@
+                        @RowTemplate(item)
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="100" class="text-center py-4 text-muted">
+                        Cargando datos o lista vacía...
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    // 1. La lista de datos (puede ser Productos, Usuarios, etc.)
+    [Parameter]
+    public IEnumerable<TItem> Items { get; set; }
+
+    // 2. El contenido de la cabecera (<th>...</th>)
+    [Parameter]
+    public RenderFragment HeaderContent { get; set; }
+
+    // 3. La plantilla de cómo se ve cada fila (<td>...</td>)
+    // Recibe el objeto TItem para que puedas acceder a sus propiedades (item.Nombre, item.Precio)
+    [Parameter]
+    public RenderFragment<TItem> RowTemplate { get; set; }
+
+    // 4. Clases CSS extra opcionales
+    [Parameter]
+    public string Class { get; set; }
+}

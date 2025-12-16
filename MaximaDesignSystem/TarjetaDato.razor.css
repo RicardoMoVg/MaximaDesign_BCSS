@@ -1,0 +1,31 @@
+﻿.tarjeta-dato {
+    /* Color de fondo oscuro basado en tu imagen (Azul grisáceo oscuro) */
+    background-color: #1F2937;
+    color: #ffffff; /* Texto blanco */
+    padding: 2rem 1.5rem; /* Espacio interno amplio */
+    text-align: center; /* Texto centrado */
+    border-radius: 0.25rem; /* Borde sutilmente redondeado (opcional) */
+    /* Flexbox para centrar verticalmente si la altura varía */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Sombra suave para profundidad */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    /* Asegura que ocupe el alto completo de su columna */
+    height: 100%;
+    min-height: 180px; /* Altura mínima para presencia visual */
+}
+
+.dato-titulo {
+    font-size: 1.5rem; /* Tamaño del título "Valor Compras" */
+    font-weight: 300; /* Letra ligera/fina */
+    margin-bottom: 0.5rem;
+    opacity: 0.9; /* Un poco menos brillante que el número */
+}
+
+.dato-valor {
+    font-size: 3.5rem; /* Tamaño GIGANTE para el "$250K" */
+    font-weight: 700; /* Letra gruesa (Bold) */
+    line-height: 1.1; /* Interlineado ajustado */
+}

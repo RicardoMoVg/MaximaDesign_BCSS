@@ -1,0 +1,39 @@
+﻿<div class="busqueda-wrapper">
+    <input type="text"
+           class="input-sin-borde"
+           placeholder="@Placeholder"
+           @bind-value="TextoBusqueda"
+           @bind-value:event="oninput"
+           @onkeyup="ManejarEnter" />
+
+    <button class="btn-buscar" @onclick="EjecutarBusqueda">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+    </button>
+</div>
+
+@code {
+    [Parameter] public string Placeholder { get; set; } = "Buscar...";
+    [Parameter] public EventCallback<string> OnSearch { get; set; }
+
+    private string TextoBusqueda { get; set; } = "";
+
+    // Ejecuta la búsqueda al presionar Enter
+    private async Task ManejarEnter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await EjecutarBusqueda();
+        }
+    }
+
+    private async Task EjecutarBusqueda()
+    {
+        if (OnSearch.HasDelegate)
+        {
+            await OnSearch.InvokeAsync(TextoBusqueda);
+        }
+    }
+}

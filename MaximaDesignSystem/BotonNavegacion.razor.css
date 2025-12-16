@@ -1,0 +1,54 @@
+﻿/* BotonNavegacion.razor.css */
+
+/* --- 1. ESTADO NORMAL (INACTIVO) --- */
+.btn-formal-dark {
+    /* Fondo muy sutil (casi transparente) */
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    /* TEXTO BLANCO (Esto es lo que pediste) */
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 6px;
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.2s ease-in-out;
+}
+
+    /* --- 2. HOVER (PASAR MOUSE) --- */
+    .btn-formal-dark:hover {
+        background-color: rgba(255, 255, 255, 0.15) !important; /* Un poco más claro */
+        color: #FFFFFF !important; /* Aseguramos que siga blanco */
+        transform: translateX(4px);
+    }
+
+/* --- 3. ACTIVO (SELECCIONADO) --- */
+.active.btn-formal-dark {
+    /* Fondo BLANCO */
+    background-color: #FFFFFF !important;
+    /* Texto AZUL (Para contraste) */
+    color: #2563EB !important;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Iconos Normales (Blancos) */
+.btn-formal-dark i,
+.btn-formal-dark span {
+    font-size: 1.2rem;
+    margin-right: 16px;
+    color: #FFFFFF !important; /* Forzamos blanco también en íconos */
+    opacity: 0.9;
+}
+
+/* Iconos Activos (Azules) */
+.active.btn-formal-dark i,
+.active.btn-formal-dark span {
+    opacity: 1;
+    color: #2563EB !important;
+}

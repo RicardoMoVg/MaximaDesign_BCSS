@@ -1,0 +1,19 @@
+﻿/* wwwroot/css/maxima.css */
+
+.btn-primary {
+    background-color: #512BD4 !important;
+    border-color: #512BD4 !important;
+}
+
+.text-primary {
+    color: #512BD4 !important;
+}
+
+
+.btn {
+    border-radius: 50px; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

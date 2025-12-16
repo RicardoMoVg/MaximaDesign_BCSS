@@ -1,0 +1,16 @@
+﻿<div class="tarjeta-icono">
+    <div class="contenedor-icono">
+        @Icono
+    </div>
+    <h3 class="titulo">@Titulo</h3>
+</div>
+
+@code {
+    // Parámetro para el texto del título
+    [Parameter, EditorRequired]
+    public string Titulo { get; set; } = "Título";
+
+    // Parámetro para el contenido del ícono (RenderFragment permite pasar HTML/SVG)
+    [Parameter, EditorRequired]
+    public RenderFragment Icono { get; set; } = default!;
+}

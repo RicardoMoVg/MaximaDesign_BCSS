@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+<NavLink href="@UrlDestino" class="@($"btn {ClaseColor} btn-nav-maxima {(Collapsed ? "collapsed" : "")} w-100 text-start")" Match="NavLinkMatch.All">
+    <div class="d-flex align-items-center justify-content-center w-100">
+        @if (IconContent != null)
+        {
+            <span class="icon-wrapper @(Collapsed ? "me-0" : "me-2")">@IconContent</span>
+        }
+        else if (!string.IsNullOrEmpty(IconoClass))
+        {
+             <span class="@IconoClass @(Collapsed ? "me-0" : "me-2")" aria-hidden="true"></span>
+        }
+
+        @if (!Collapsed)
+        {
+            <span class="text-truncate">@Texto</span>
+        }
+    </div>
+</NavLink>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Texto { get; set; } = "Ir";
+
+    [Parameter, EditorRequired]
+    public string UrlDestino { get; set; } = "#";
+
+    [Parameter]
+    public string ClaseColor { get; set; } = "btn-primary";
+
+    // NUEVO PARÁMETRO: Para recibir la clase del ícono (ej. "bi bi-house")
+    [Parameter]
+    public string IconoClass { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment? IconContent { get; set; }
+
+    [Parameter]
+    public bool Collapsed { get; set; }
+}

@@ -1,0 +1,62 @@
+﻿.busqueda-wrapper {
+    /* ESTRUCTURA FLEXIBLE */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* DISEÑO VISUAL (El borde azul oscuro) */
+    border: 2px solid #1F2937; /* Mismo color que las tarjetas de datos */
+    border-radius: 50px; /* Forma de píldora completa */
+    background-color: #ffffff; /* Fondo blanco para el texto */
+    /* TAMAÑO */
+    padding: 0; /* Sin padding externo para que el botón toque el borde */
+    width: 100%;
+    max-width: 500px; /* Ancho máximo elegante */
+    height: 50px; /* Altura fija para consistencia */
+    overflow: hidden; /* Para que el botón no se salga de las curvas */
+    transition: box-shadow 0.3s ease;
+}
+
+    /* Efecto al hacer foco (Resplandor azul suave) */
+    .busqueda-wrapper:focus-within {
+        box-shadow: 0 0 0 4px rgba(31, 41, 55, 0.2);
+    }
+
+.input-sin-borde {
+    /* El input toma todo el espacio disponible a la izquierda */
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding-left: 1.5rem; /* Espacio antes del texto */
+    font-size: 1rem;
+    color: #1F2937;
+    height: 100%;
+}
+
+    .input-sin-borde::placeholder {
+        color: #9CA3AF; /* Gris suave para el placeholder */
+    }
+
+.btn-buscar {
+    /* ESTILO DEL BOTÓN (Lado derecho) */
+    background-color: #1F2937; /* Fondo azul oscuro */
+    color: white; /* Ícono blanco */
+    border: none;
+    height: 100%; /* Llena toda la altura */
+    padding: 0 1.5rem; /* Ancho del botón */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+    .btn-buscar:hover {
+        /* Un poco más claro al pasar el mouse */
+        background-color: #374151;
+    }
+
+    .btn-buscar:active {
+        /* Efecto de clic */
+        transform: scale(0.95);
+    }
