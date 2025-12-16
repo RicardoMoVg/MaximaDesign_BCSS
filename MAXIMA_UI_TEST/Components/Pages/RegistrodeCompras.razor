@@ -1,0 +1,132 @@
+﻿@page "/registro-c"
+
+<div class="registro-container">
+    <div class="sidebar-column">
+        <ReusableSidebar Opciones="@MenuOpciones" 
+                         OpcionSeleccionada="@OpcionActiva" 
+                         OnSeleccion="HandleSeleccion" />
+    </div>
+
+    <div class="content-column">
+        <h2 class="page-title">Registrar compra</h2>
+
+        <div class="form-card">
+            <div class="card-header">
+                <h3>Detalles de la compra</h3>
+                <p class="subtitle">Rellene todos los campos</p>
+            </div>
+
+            <div class="form-section grid-3-cols">
+                <div class="form-group disabled">
+                    <label>Folio de compra</label>
+                    <input type="text" value="A00000" readonly placeholder="Generado automáticamente" />
+                    <span class="helper-text">Generado automáticamente</span>
+                </div>
+                <div class="form-group">
+                    <label>Número de pedido</label>
+                    <input type="text" value="112-2158969-0582659" />
+                    <span class="helper-text">Número de pedido del vendedor</span>
+                </div>
+                <div class="form-group">
+                    <label>ASIN</label>
+                    <select class="form-select">
+                        <option selected>BGM0023898</option>
+                        </select>
+                </div>
+
+                <div class="form-group disabled">
+                    <label>Fecha de la compra</label>
+                    <div class="input-with-icon right">
+                        <input type="text" placeholder="YYYY/MM/DD" readonly />
+                        <i class="calendar-icon">📅</i>
+                    </div>
+                    <span class="helper-text">Solicitar edición con administrador.</span>
+                </div>
+                <div class="form-group required">
+                    <label>Tienda de compra</label>
+                    <select class="form-select">
+                        <option selected disabled>Seleccione</option>
+                    </select>
+                </div>
+                <div class="form-group required">
+                    <label>Marketplace destino</label>
+                    <select class="form-select">
+                        <option selected disabled>Seleccione</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-section">
+                <div class="product-image-placeholder">
+                    <i class="image-icon">🖼️</i>
+                </div>
+                <div class="product-details">
+                    <h4>Nombre del producto</h4>
+                    <p class="product-code">BGM0023898</p>
+                    <p class="product-seller">Comercio: <strong>Máxima</strong></p>
+                </div>
+                <div class="quantity-control">
+                    <button class="qty-btn">-</button>
+                    <input type="text" value="1" class="qty-input" readonly />
+                    <button class="qty-btn">+</button>
+                </div>
+            </div>
+
+            <div class="form-section grid-3-cols-bottom">
+                <div class="form-group required">
+                    <label>Costo unitario sin tasas</label>
+                    <div class="input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="text" placeholder="0.00" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label>Costo unitario</label>
+                    <div class="input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="text" placeholder="0.00" />
+                    </div>
+                </div>
+                <div class="form-group required">
+                    <label>Costo total</label>
+                    <div class="input-group">
+                        <span class="input-prefix">$</span>
+                        <input type="text" placeholder="0.00" />
+                    </div>
+                </div>
+                
+                <div class="form-group required">
+                    <label>Método de pago</label>
+                    <select class="form-select">
+                        <option selected disabled>Seleccione</option>
+                    </select>
+                </div>
+                 <div class="form-group required grid-span-2">
+                    <label>Notas</label>
+                    <textarea placeholder=""></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-save">Guardar</button>
+            </div>
+
+        </div> </div>
+</div>
+
+@code {
+    // Datos para el sidebar lateral
+    private List<string> MenuOpciones = new List<string> {
+        "Detalles de compra", "Tracking", "Opción 3", "Opción 4",
+        "Opción 5", "Opción 6", "Opción 7", "Opción 8"
+    };
+
+    // Inicializamos con la primera opción activa según la imagen
+    private string OpcionActiva { get; set; } = "Detalles de compra";
+
+    private void HandleSeleccion(string seleccion)
+    {
+        OpcionActiva = seleccion;
+        // Aquí iría la lógica para cambiar de vista si fuera necesario
+    }
+}

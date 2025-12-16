@@ -1,0 +1,22 @@
+/* 1. Importar funciones necesarias de Bootstrap (pero no todo aún) */
+@import "../node_modules/bootstrap/scss/functions";
+
+/* 2. TUS VARIABLES (Aquí creas tu librería visual) */
+/* Sobrescribimos los defaults de Bootstrap */
+$primary: #6f42c1; /* Cambiamos el azul por morado */
+$font-family-base: 'Segoe UI', sans-serif;
+$border-radius: 0.5rem; /* Bordes más redondeados */
+
+/* Puedes crear tus propias variables */
+$mi-color-especial: #ffcc00;
+
+/* 3. Importar el resto de Bootstrap */
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* 4. Tus clases personalizadas que usan Bootstrap */
+.btn-super-especial {
+    @include button-variant($mi-color-especial, black);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}

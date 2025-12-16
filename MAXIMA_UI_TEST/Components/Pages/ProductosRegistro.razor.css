@@ -1,0 +1,158 @@
+﻿/* --- Estructura General --- */
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7f9; /* Fondo gris azulado suave */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar-area {
+    flex-shrink: 0;
+    /* El ancho lo define el componente ReusableSidebar */
+}
+
+.content-area {
+    flex-grow: 1;
+    padding: 40px 60px;
+}
+
+/* --- Título Principal --- */
+.page-header {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+/* --- Tarjeta Blanca Principal --- */
+.main-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    max-width: 900px; /* Evita que se estire demasiado en pantallas grandes */
+    position: relative; /* Para posicionar el botón */
+    min-height: 600px;
+}
+
+/* --- Encabezado del Formulario --- */
+.form-section-header {
+    margin-bottom: 40px;
+    padding-left: 170px; /* Alineación visual con los inputs */
+}
+
+    .form-section-header h3 {
+        font-size: 18px;
+        font-weight: 700;
+        color: #bbb; /* Color gris claro para el título */
+        margin: 0;
+    }
+
+    .form-section-header p {
+        font-size: 14px;
+        color: #bbb;
+        margin: 5px 0 0 0;
+    }
+
+/* --- Sistema de Grid para el Formulario --- */
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio vertical entre filas */
+}
+
+.form-row {
+    display: grid;
+    /* Columna 1: Label (ancho fijo o auto), Columna 2: Input (flexible) */
+    grid-template-columns: 150px 1fr;
+    gap: 20px;
+    align-items: flex-start; /* Alinear arriba por si el texto baja */
+}
+
+/* Etiquetas (Labels) */
+.row-label {
+    text-align: right;
+    font-weight: 600;
+    font-size: 14px;
+    color: #000;
+    padding-top: 10px; /* Ajuste fino para alinear con el texto del input */
+}
+
+.red {
+    color: #d32f2f;
+}
+
+/* Contenedor del Input y Helper Text */
+.input-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 400px; /* Ancho máximo de los inputs como en la imagen */
+}
+
+/* Estilo específico de los Inputs (Fondo gris) */
+.styled-input {
+    background-color: #f0f0f0; /* El gris de fondo */
+    border: none;
+    border-bottom: 1px solid #ccc; /* Solo borde inferior sutil */
+    border-radius: 4px 4px 0 0;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333;
+    height: 40px;
+    width: 100%;
+    outline: none;
+}
+
+    .styled-input:focus {
+        background-color: #e8e8e8;
+        border-bottom-color: #666;
+    }
+
+/* Helper Text debajo del input */
+.helper-text {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    border-top: 1px solid #777; /* La línea oscura fina que se ve justo debajo del input */
+    padding-top: 4px;
+}
+
+/* Icono especial para el Select */
+.select-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    pointer-events: none;
+    font-size: 12px;
+    color: #666;
+}
+/* Limpiamos la flecha por defecto del select para poner la nuestra */
+select.styled-input {
+    appearance: none;
+}
+
+/* --- Botón Siguiente --- */
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.btn-next {
+    background-color: #1a1f2c; /* Color oscuro casi negro */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Bordes muy redondeados */
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .btn-next:hover {
+        background-color: #333;
+    }

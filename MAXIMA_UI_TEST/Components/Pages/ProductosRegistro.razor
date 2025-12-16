@@ -1,0 +1,99 @@
+﻿@page "/registro-producto"
+@rendermode InteractiveServer
+@* Asumo que el navbar está en el namespace principal o en Shared *@
+@using MaximaDesignSystem 
+@inject NavigationManager Navigation
+
+<div class="layout-wrapper">
+    <div class="sidebar-area">
+        <ReusableSidebar Opciones="@PasosRegistro" 
+                         OpcionSeleccionada="@PasoActual" 
+                         OnSeleccion="CambiarPaso" />
+    </div>
+
+    <div class="content-area">
+        <h2 class="page-header">Registro de producto</h2>
+
+        <div class="main-card">
+            <div class="form-section-header">
+                <h3>Identificadores de producto.</h3>
+                <p>Rellene todos los campos obligatorios</p>
+            </div>
+
+            <div class="form-body">
+                
+                <div class="form-row">
+                    <label class="row-label">Comercio <span class="red">*</span></label>
+                    <div class="input-container">
+                        <select class="styled-input">
+                            <option selected disabled></option>
+                            <option>Máxima</option>
+                            <option>Otro</option>
+                        </select>
+                        <span class="helper-text">Comercio para el que se compra el producto.</span>
+                        <span class="select-icon">↕</span> 
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="row-label">ASIN <span class="red">*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="styled-input" />
+                        <span class="helper-text">Identificador único de Amazon.</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="row-label">FNSKU <span class="red">*</span></label>
+                    <div class="input-container">
+                        <input type="text" class="styled-input" />
+                        <span class="helper-text">Identificador interno de inventario.</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="row-label">EAN</label>
+                    <div class="input-container">
+                        <input type="text" class="styled-input" />
+                        <span class="helper-text">European Article Number (12 dígitos)</span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="row-label">UPC</label>
+                    <div class="input-container">
+                        <input type="text" class="styled-input" />
+                        <span class="helper-text">Universal Product Code (13 dígitos)</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer">
+                <button class="btn-next">Siguiente &gt;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // Lista exacta de opciones basada en tu imagen
+    private List<string> PasosRegistro = new List<string> {
+        "Identificadores de producto",
+        "Detalles básicos",
+        "Imágenes del producto",
+        "Presentación",
+        "Precios de venta",
+        "Descripciones",
+        "Atributos del producto",
+        "Datos de Importación"
+    };
+
+    private string PasoActual = "Identificadores de producto";
+
+    private void CambiarPaso(string paso)
+    {
+        PasoActual = paso;
+        // Lógica para cambiar de vista si fuera necesario
+    }
+}

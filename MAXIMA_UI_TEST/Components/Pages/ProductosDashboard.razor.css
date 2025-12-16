@@ -1,0 +1,156 @@
+﻿/* --- Layout Principal --- */
+.dashboard-container {
+    /* Color de fondo oscuro de la imagen */
+    background-color: #1a1a27;
+    min-height: 100vh;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    /* LA CLAVE: CSS Grid para las proporciones 1.5 vs 3 */
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    gap: 25px; /* Espacio entre la columna izquierda y derecha */
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espacio vertical entre las filas de la derecha */
+}
+
+/* --- Estilos Generales de Tarjetas --- */
+.card {
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.white-card {
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.dark-card {
+    /* Azul oscuro de las tarjetas de estadísticas */
+    background-color: #1e2a38;
+    color: #ffffff;
+}
+
+/* Títulos dentro de tarjetas blancas */
+.card-title-dark {
+    margin-top: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #444;
+}
+
+.no-margin-bottom {
+    margin-bottom: 15px;
+}
+
+/* --- Columna Izquierda Específica --- */
+.tall-card {
+    height: 100%; /* Que ocupe todo el alto disponible */
+    display: flex;
+    flex-direction: column;
+}
+
+.alert-placeholder {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #a0a0a0;
+    font-weight: 500;
+}
+
+/* --- Fila 1: Grid de Estadísticas --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    gap: 20px;
+}
+
+.stat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #aab2bd; /* Gris claro para etiquetas */
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* --- Fila 2: Atajos --- */
+.section-header {
+    color: #aab2bd;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    gap: 20px;
+}
+
+.shortcut-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .shortcut-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .shortcut-btn span {
+        font-weight: 600;
+        margin-top: 15px;
+        font-size: 1rem;
+    }
+
+/* Iconos de los atajos */
+.icon-container {
+    margin-bottom: 5px;
+}
+
+.blue-icon {
+    color: #4a90e2;
+}
+
+.green-icon {
+    color: #50e3c2;
+}
+
+.purple-icon {
+    color: #9013fe;
+}
+
+.orange-icon {
+    color: #f5a623;
+}
+
+
+/* --- Fila 3: Caja Inferior --- */
+.gray-placeholder-box {
+    background-color: #eef1f5;
+    height: 70px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #e1e5eb;
+}

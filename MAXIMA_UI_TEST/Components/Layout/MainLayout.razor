@@ -1,0 +1,36 @@
+﻿@inherits LayoutComponentBase
+@using MaximaDesignSystem
+
+<div class="page d-flex">
+
+    <div class="sidebar" style="width: 250px; flex-shrink: 0;">
+        <NavMenu />
+    </div>
+
+    <main class="flex-grow-1" style="min-width: 0;">
+
+        <div class="d-flex align-items-center justify-content-center px-4 py-3 bg-white border-bottom position-relative">
+            <div style="width: 100%; max-width: 600px;">
+                <CampoBusqueda Placeholder="" />
+            </div>
+            <div class="position-absolute top-50 end-0 translate-middle-y pe-4 d-flex align-items-center">
+                <span class="d-block fw-bold text-dark me-2">Bienvenido, <span style="color: #0099CC;">Usuario</span></span>
+                <div class="rounded-circle bg-secondary bg-opacity-10 d-flex justify-content-center align-items-center"
+                     style="width: 40px; height: 40px; color: #6c757d;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <article class="content px-4 mt-4">
+            @Body
+        </article>
+    </main>
+
+    <div class="barra-extra" style="flex-shrink: 0;">
+        <BarraHerramientas />
+    </div>
+
+</div>
