@@ -1,12 +1,8 @@
-/* NavMenu.razor.css - VERSIÓN LIMPIA */
-
-/* Solo necesitamos asegurar que el menú responda bien en altura */
 .nav-scrollable {
     height: 100%;
     overflow-y: auto;
 }
 
-/* Personalizar la barra de scroll del menú para que sea elegante (opcional) */
 ::-webkit-scrollbar {
     width: 6px;
 }
