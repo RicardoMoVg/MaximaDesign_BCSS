@@ -1,95 +1,161 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @using MaximaDesignSystem
+@using MaximaDesignSystem.MB_Library
 @inject NavigationManager Navigation
 
+<PageTitle>Centro de Tareas</PageTitle>
 
-<PageTitle>Dashboard - Inicio</PageTitle>
-
-<div class="mb-5">
-    <h2 class="fw-bold text-dark">Resumen General</h2>
-    <p class="text-secondary">Bienvenido al panel de control de Maxima.</p>
-</div>
-
-<div class="container-fluid p-0">
-
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
-        <div class="col">
-            <TarjetaDato Titulo="Valor Compras" Valor="$250K" />
-        </div>
-        <div class="col">
-            <TarjetaDato Titulo="Total Clientes" Valor="1,240" />
-        </div>
-        <div class="col">
-            <TarjetaDato Titulo="Pedidos Pendientes" Valor="15" />
-        </div>
+<div class="container-fluid p-0 mt-3">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-dark m-0">Centro de tareas</h2>
+        
+        <div class="d-flex align-items-center">
+             </div>
     </div>
 
-    <h4 class="fw-bold text-dark mb-4">Accesos Rápidos</h4>
+    <div class="row g-4 h-100">
+        
+        <div class="col-lg-4">
+            <div class="card white-card h-100 p-3">
+                
+                <div class="d-flex gap-2 mb-4">
+                    <button class="btn btn-tab tab-red active">Pendientes</button>
+                    <button class="btn btn-tab tab-yellow">Creadas por mí</button>
+                    <button class="btn btn-tab tab-green">Resueltas</button>
+                </div>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+                <div class="d-flex justify-content-between align-items-center border-bottom pb-2 mb-2">
+                    <h6 class="text-muted fw-bold m-0">Listado de tareas pendientes</h6>
+                    <button class="btn btn-link text-secondary p-0"><i class="bi bi-filter-right fs-4"></i></button>
+                </div>
 
-        <div class="col">
-            <a href="Catalogo" class="text-decoration-none">
-                <TarjetaIcono Titulo="Catálogo">
-                    <Icono>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-                            <rect x="14" y="10" width="8" height="8" rx="1" style="fill:white; stroke:currentColor; stroke-width:1.5;" />
-                            <path d="M14 14l4-2 4 2M18 12v6" />
-                        </svg>
-                    </Icono>
-                </TarjetaIcono>
-            </a>
+                <div class="task-list overflow-auto" style="max-height: 600px;">
+                    @foreach (var tarea in TareasList)
+                    {
+                        <div class="task-item p-3 border-bottom @(tarea.Id == "INV0010" ? "active-task" : "")">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-bold text-dark text-truncate">@tarea.Departamento - @tarea.Usuario</span>
+                                <span class="text-muted x-small">@tarea.Fecha</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-primary fw-bold small me-1">@tarea.Id</span>
+                                    <span class="text-secondary small text-truncate d-inline-block" style="max-width: 180px;">@tarea.Asunto</span>
+                                </div>
+                                <span class="badge bg-light text-secondary border fw-normal">@tarea.EstadoTiempo</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
 
-        <div class="col">
-            <TarjetaIcono Titulo="Registrar Producto">
-                <Icono>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                        <line x1="12" y1="22.08" x2="12" y2="12" />
-                        <g transform="translate(10, 10)">
-                            <circle cx="9" cy="9" r="6" fill="white" stroke="none" />
-                            <path d="M9 5v8M5 9h8" stroke="#00D100" stroke-width="3" />
-                        </g>
-                    </svg>
-                </Icono>
-            </TarjetaIcono>
-        </div>
+        <div class="col-lg-8">
+            <div class="card white-card h-100 d-flex flex-column p-0 overflow-hidden">
+                
+                <div class="p-4 border-bottom bg-white">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5 class="fw-bold text-dark mb-1">
+                                Discusión de tarea: <span class="text-primary">INV0010</span> - Producto dañado, solicitar reembolso.
+                            </h5>
+                            <p class="text-muted small m-0">
+                                Tarea para <span class="fw-bold text-dark">Compras</span> iniciada por <span class="fw-bold text-dark">Almacén</span> - Elizabeth Cuevas
+                            </p>
+                        </div>
+                        <div class="text-end">
+                            <div class="small"><span class="text-muted">Estado:</span> <span class="text-success fw-bold">Abierta</span></div>
+                            <div class="small"><span class="text-muted">Prioridad:</span> <span class="text-success fw-bold">Normal</span></div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="col">
-            <TarjetaIcono Titulo="Registrar Compra">
-                <Icono>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="9" cy="21" r="1" />
-                        <circle cx="20" cy="21" r="1" />
-                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-                        <g transform="translate(8, 8)">
-                            <circle cx="9" cy="9" r="6" fill="white" stroke="none" />
-                            <path d="M9 5v8M5 9h8" stroke="#00D100" stroke-width="3" />
-                        </g>
-                    </svg>
-                </Icono>
-            </TarjetaIcono>
-        </div>
+                <div class="chat-area flex-grow-1 p-4 overflow-auto bg-light">
+                    
+                    <div class="chat-message d-flex gap-3 mb-4">
+                        <div class="avatar bg-info bg-opacity-25 text-info">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="message-content w-100">
+                            <div class="fw-bold text-dark mb-1">Almacén - Elizabeth Cuevas</div>
+                            <p class="text-dark mb-2">Adjunto las imágenes necesarias para el trámite.</p>
+                            
+                            <div class="row g-2 mb-2" style="max-width: 600px;">
+                                <div class="col-6"><div class="img-placeholder gradient-1"></div></div>
+                                <div class="col-6"><div class="img-placeholder gradient-2"></div></div>
+                                <div class="col-6"><div class="img-placeholder gradient-3"></div></div>
+                                <div class="col-6"><div class="img-placeholder gradient-4"></div></div>
+                            </div>
+                            <div class="text-end text-muted x-small">YYYY/MM/DD hh:mm:ss</div>
+                        </div>
+                    </div>
 
-        <div class="col">
-            <TarjetaIcono Titulo="Traslados">
-                <Icono>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="15" width="20" height="3" rx="1" />
-                        <circle cx="5" cy="19" r="2" />
-                        <circle cx="19" cy="19" r="2" />
-                        <path d="M5 17v-4h2m12 4v-6h-2" />
-                        <rect x="4" y="6" width="6" height="6" rx="1" />
-                        <rect x="11" y="4" width="8" height="8" rx="1" />
-                        <path d="M22 10h2M22 7h1" stroke="#666" stroke-width="1" />
-                    </svg>
-                </Icono>
-            </TarjetaIcono>
+                    <div class="chat-message d-flex gap-3 mb-4">
+                        <div class="avatar bg-danger bg-opacity-10 text-danger">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="message-content w-100 border-top pt-3">
+                            <div class="fw-bold text-dark mb-1">Compras - Rebeca Evangelista</div>
+                            <p class="text-dark mb-1">Recibido. Se hizo la solicitud al proveedor y nos pide una foto lateral también.</p>
+                            <div class="text-end text-muted x-small">YYYY/MM/DD hh:mm:ss</div>
+                        </div>
+                    </div>
+
+                     <div class="chat-message d-flex gap-3 mb-4">
+                        <div class="avatar bg-info bg-opacity-25 text-info">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <div class="message-content w-100 border-top pt-3">
+                            <div class="fw-bold text-dark mb-1">Almacén - Elizabeth Cuevas</div>
+                            <p class="text-dark mb-1">Recibido, adjunto la imagen pendiente.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="p-3 bg-white border-top position-relative">
+                    
+                    <div class="position-absolute end-0 bottom-100 mb-2 me-3 shadow-sm border bg-white p-2 rounded small" style="z-index: 10;">
+                        <strong>Resolver tarea</strong><br>
+                        <span class="text-muted x-small">Una vez esté todo listo, resuelve esta tarea</span>
+                    </div>
+
+                    <div class="input-group bg-light rounded-pill p-1 border">
+                        <span class="input-group-text bg-transparent border-0 ps-3">
+                            <div class="avatar-small bg-danger bg-opacity-10 text-danger"><i class="bi bi-person-fill"></i></div>
+                        </span>
+                        <input type="text" class="form-control bg-transparent border-0 shadow-none" placeholder="Escribir comentario">
+                        <button class="btn btn-link text-secondary"><i class="bi bi-paperclip"></i></button>
+                        <button class="btn btn-dark rounded-pill px-4 ms-1">Responder</button>
+                        <button class="btn btn-success rounded-circle ms-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                            <i class="bi bi-check-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>
 </div>
+
+@code {
+    public class Tarea
+    {
+        public string Id { get; set; }
+        public string Departamento { get; set; }
+        public string Usuario { get; set; }
+        public string Asunto { get; set; }
+        public string Fecha { get; set; }
+        public string EstadoTiempo { get; set; }
+    }
+
+    private List<Tarea> TareasList = new List<Tarea>
+    {
+        new Tarea { Id = "INV0005", Departamento = "Almacén", Usuario = "Elizabeth Cuevas", Asunto = "Actualizar número de guía...", Fecha = "YYYY/MM/DD", EstadoTiempo = "Abierto 1 día" },
+        new Tarea { Id = "INV00124", Departamento = "Almacén", Usuario = "David Aguilar", Asunto = "Producto perdido, procesar...", Fecha = "YYYY/MM/DD", EstadoTiempo = "Abierto 4h" },
+        new Tarea { Id = "INV0010", Departamento = "Logística", Usuario = "Elizabeth Cuevas", Asunto = "Producto dañado, solicitar...", Fecha = "YYYY/MM/DD", EstadoTiempo = "Abierto 1 día" },
+    };
+}

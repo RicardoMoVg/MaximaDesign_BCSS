@@ -1,11 +1,172 @@
 ﻿@page "/Ventas_dashboard"
 @rendermode InteractiveServer
 @using MaximaDesignSystem
+@using MaximaDesignSystem.MB_Library
 @inject NavigationManager Navigation
- 
 
-<h3>Ventas</h3>
+<div class="dashboard-container">
+
+    <div class="left-column">
+        <div class="card white-card tall-card">
+            <div class="p-3 border-bottom bg-dark text-white rounded-top">
+                <h6 class="mb-0 fw-bold">Análisis de Rendimiento (Catálogo)</h6>
+            </div>
+            
+            <div class="p-0 flex-grow-1 overflow-auto">
+                <MbTable Items="ProductosRendimiento" Class="table-hover table-sm small mb-0">
+                    <HeaderContent>
+                        <th class="ps-3 text-secondary fw-normal">Producto</th>
+                        <th class="text-center text-secondary fw-normal">Unid.</th>
+                        <th class="text-end text-secondary fw-normal pe-3">Ingresos</th>
+                    </HeaderContent>
+                    <RowTemplate Context="prod">
+                        <td class="ps-3 fw-bold">@prod.Nombre</td>
+                        <td class="text-center text-muted">@prod.UnidadesVendidas</td>
+                        <td class="text-end pe-3 text-success fw-bold">$@prod.IngresosK</td>
+                    </RowTemplate>
+                </MbTable>
+            </div>
+            
+            <div class="p-3 border-top text-center">
+                <button class="btn btn-sm btn-outline-dark w-100">Ver reporte completo</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="right-column">
+
+        <div class="stats-grid">
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Ingresos (Mes)</span>
+                <span class="stat-value">$450K</span>
+            </div>
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Unidades Vendidas</span>
+                <span class="stat-value">2.1K</span>
+            </div>
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Pedidos</span>
+                <span class="stat-value">850</span>
+            </div>
+             <div class="card dark-card stat-card">
+                <span class="stat-label">Ticket Promedio</span>
+                <span class="stat-value text-info">$529</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="d-flex justify-content-end mb-2">
+                <span class="badge bg-dark rounded-pill px-3 py-2">Atajos a Operaciones Frecuentes</span>
+            </div>
+            <div class="shortcuts-grid">
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container blue-icon"><i class="bi bi-journal-text fs-2"></i></div>
+                    <span>Catálogo</span>
+                </button>
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container green-icon position-relative">
+                        <i class="bi bi-box-seam fs-2"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success p-1" style="font-size:0.5em;">+</span>
+                    </div>
+                    <span>Reg. Producto</span>
+                </button>
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container green-icon position-relative">
+                        <i class="bi bi-cart-plus fs-2"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success p-1" style="font-size:0.5em;">+</span>
+                    </div>
+                    <span>Reg. Compra</span>
+                </button>
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container orange-icon"><i class="bi bi-truck fs-2"></i></div>
+                    <span>Traslados</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row g-3 h-100">
+            
+            <div class="col-md-6">
+                <div class="card white-card h-100 p-4">
+                    <h6 class="text-secondary mb-4">Ingresos por Canal</h6>
+                    
+                    <div class="d-flex flex-column gap-3">
+                        @foreach(var canal in CanalesVenta)
+                        {
+                            <div>
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span class="fw-bold">@canal.Nombre</span>
+                                    <span class="text-muted">@canal.Porcentaje%</span>
+                                </div>
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar bg-dark" role="progressbar" style="width: @canal.Porcentaje%"></div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card white-card h-100 p-4 position-relative overflow-hidden">
+                    <h6 class="text-secondary mb-2">Tendencia de Ingresos</h6>
+                    <h3 class="fw-bold text-success mb-4">
+                        <i class="bi bi-graph-up-arrow me-2"></i> +12.5%
+                    </h3>
+                    
+                    <div class="d-flex align-items-end justify-content-between h-50 px-2 mt-auto" style="opacity: 0.7;">
+                        <div class="bg-success rounded-top" style="width: 12%; height: 30%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 45%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 35%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 60%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 50%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 85%;"></div>
+                        <div class="bg-success rounded-top" style="width: 12%; height: 70%;"></div>
+                    </div>
+                    <div class="border-top mt-1 pt-1 d-flex justify-content-between text-muted x-small">
+                        <span>Día 1</span><span>Día 15</span><span>Día 30</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 @code {
+    // Modelos de datos
+    public class ProductoRendimiento
+    {
+        public string Nombre { get; set; } = "";
+        public int UnidadesVendidas { get; set; }
+        public string IngresosK { get; set; } = "";
+    }
 
+    public class CanalVenta
+    {
+        public string Nombre { get; set; } = "";
+        public int Porcentaje { get; set; }
+    }
+
+    // Datos simulados
+    private List<ProductoRendimiento> ProductosRendimiento = new List<ProductoRendimiento>
+    {
+        new ProductoRendimiento { Nombre = "Echo Dot", UnidadesVendidas = 1500, IngresosK = "75K" },
+        new ProductoRendimiento { Nombre = "Cable USB-C", UnidadesVendidas = 1200, IngresosK = "12K" },
+        new ProductoRendimiento { Nombre = "Soporte Monitor", UnidadesVendidas = 850, IngresosK = "25K" },
+        new ProductoRendimiento { Nombre = "Webcam HD", UnidadesVendidas = 600, IngresosK = "30K" },
+        new ProductoRendimiento { Nombre = "Mouse Wireless", UnidadesVendidas = 550, IngresosK = "15K" },
+        new ProductoRendimiento { Nombre = "Teclado Mecánico", UnidadesVendidas = 400, IngresosK = "45K" },
+        new ProductoRendimiento { Nombre = "Auriculares BT", UnidadesVendidas = 320, IngresosK = "18K" },
+    };
+
+    private List<CanalVenta> CanalesVenta = new List<CanalVenta>
+    {
+        new CanalVenta { Nombre = "Amazon FBA", Porcentaje = 65 },
+        new CanalVenta { Nombre = "Mercado Libre", Porcentaje = 45 },
+        new CanalVenta { Nombre = "Shopee", Porcentaje = 25 },
+        new CanalVenta { Nombre = "Venta Local", Porcentaje = 10 },
+    };
 }

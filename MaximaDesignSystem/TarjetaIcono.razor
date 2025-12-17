@@ -1,16 +1,18 @@
-﻿<div class="tarjeta-icono">
-    <div class="contenedor-icono">
+﻿@namespace MaximaDesignSystem
+
+<div class="card border-0 shadow-sm h-100 py-5 d-flex flex-column align-items-center justify-content-center hover-scale">
+    <div class="mb-3 text-secondary">
         @Icono
     </div>
-    <h3 class="titulo">@Titulo</h3>
+    <div class="fw-bold fs-5 text-dark">@Titulo</div>
 </div>
 
-@code {
-    // Parámetro para el texto del título
-    [Parameter, EditorRequired]
-    public string Titulo { get; set; } = "Título";
+<style>
+    .hover-scale { transition: transform 0.2s; }
+    .hover-scale:hover { transform: translateY(-5px); cursor: pointer; }
+</style>
 
-    // Parámetro para el contenido del ícono (RenderFragment permite pasar HTML/SVG)
-    [Parameter, EditorRequired]
-    public RenderFragment Icono { get; set; } = default!;
+@code {
+    [Parameter] public string Titulo { get; set; }
+    [Parameter] public RenderFragment Icono { get; set; }
 }

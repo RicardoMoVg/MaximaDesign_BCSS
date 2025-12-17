@@ -1,11 +1,189 @@
-﻿@page "/products"
+﻿@page "/Products_dashboard"
 @rendermode InteractiveServer
 @using MaximaDesignSystem
+@using MaximaDesignSystem.MB_Library
 @inject NavigationManager Navigation
 
+<div class="dashboard-container">
 
-<h3>Products</h3>
+    <div class="left-column">
+        <div class="card white-card tall-card">
+            <div class="p-3 border-bottom">
+                <h3 class="card-title-dark mb-0">Alertas de Inventario</h3>
+            </div>
+
+            <div class="d-flex flex-column flex-grow-1 p-3">
+                @if (AlertasInventario.Any())
+                {
+                    <div class="list-group list-group-flush w-100">
+                        @foreach (var alerta in AlertasInventario)
+                        {
+                            <div class="list-group-item border-0 px-0 py-3 d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <span class="rounded-circle me-3" style="width: 12px; height: 12px; background-color: @alerta.Color;"></span>
+                                    <span class="fw-bold me-2 fs-5">@alerta.Cantidad</span>
+                                    <div class="d-flex flex-column">
+                                        <span class="text-muted small lh-1">@alerta.Mensaje</span>
+                                        <span class="text-secondary x-small">@alerta.Subtitulo</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3">Ver</button>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert-placeholder">
+                        Todo el inventario está en orden.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column">
+
+        <div class="stats-grid">
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Total Productos</span>
+                <span class="stat-value">1,240</span>
+            </div>
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Bajo Stock</span>
+                <span class="stat-value text-warning">15</span>
+            </div>
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Categorías</span>
+                <span class="stat-value">8</span>
+            </div>
+            <div class="card dark-card stat-card">
+                <span class="stat-label">Valor Inventario</span>
+                <span class="stat-value">$850K</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="section-header mb-0">Gestión Rápida</h4>
+                <span class="badge bg-dark rounded-pill px-3 py-2">Acciones Frecuentes</span>
+            </div>
+
+            <div class="shortcuts-grid">
+                <button class="card white-card shortcut-btn" @onclick="IrACatalogo">
+                    <div class="icon-container blue-icon">
+                        <i class="bi bi-grid-3x3-gap-fill fs-2"></i>
+                    </div>
+                    <span>Ver Catálogo</span>
+                </button>
+
+                <button class="card white-card shortcut-btn" @onclick="IrARegistroProducto">
+                    <div class="icon-container green-icon position-relative">
+                        <i class="bi bi-box-seam fs-2"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success p-1" style="font-size:0.5em;">+</span>
+                    </div>
+                    <span>Registrar Nuevo</span>
+                </button>
+
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container purple-icon">
+                        <i class="bi bi-tags-fill fs-2"></i>
+                    </div>
+                    <span>Ajuste Precios</span>
+                </button>
+
+                <button class="card white-card shortcut-btn">
+                    <div class="icon-container orange-icon">
+                        <i class="bi bi-upc-scan fs-2"></i>
+                    </div>
+                    <span>Etiquetas</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="card white-card h-100">
+            <h3 class="card-title-dark mb-3">Productos con Mayor Movimiento</h3>
+
+            <MbTable Items="ProductosTop" Class="table-borderless table-hover align-middle">
+                <HeaderContent>
+                    <th class="text-secondary fw-normal ps-3">Producto</th>
+                    <th class="text-secondary fw-normal">Categoría</th>
+                    <th class="text-secondary fw-normal text-center">Stock</th>
+                    <th class="text-secondary fw-normal text-center">Estado</th>
+                    <th class="text-secondary fw-normal text-end pe-3">Precio</th>
+                </HeaderContent>
+
+                <RowTemplate Context="prod">
+                    <td class="fw-bold ps-3">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-light rounded p-1 me-2 d-flex justify-content-center align-items-center" style="width:32px;height:32px;">
+                                <i class="bi bi-image text-muted"></i>
+                            </div>
+                            @prod.Nombre
+                        </div>
+                    </td>
+                    <td class="text-muted">@prod.Categoria</td>
+                    <td class="fw-bold text-center">@prod.Stock</td>
+                    <td class="text-center">
+                        @if (prod.Stock < 20)
+                        {
+                            <span class="badge bg-warning text-dark rounded-pill bg-opacity-25">Bajo Stock</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success text-success rounded-pill bg-opacity-10">Disponible</span>
+                        }
+                    </td>
+                    <td class="fw-bold text-end pe-3">$@prod.Precio.ToString("0.00")</td>
+                </RowTemplate>
+            </MbTable>
+        </div>
+
+    </div>
+</div>
 
 @code {
+    private void IrARegistroProducto()
+    {
+        // Redirige al formulario que acabamos de crear
+        Navigation.NavigateTo("/productos/registro");
+    }
 
+    private void IrACatalogo()
+    {
+        // Navigation.NavigateTo("/productos/catalogo");
+    }
+
+    // --- MODELOS DE DATOS ---
+    public class AlertaProducto
+    {
+        public string? Color { get; set; }
+        public int Cantidad { get; set; }
+        public string? Mensaje { get; set; }
+        public string? Subtitulo { get; set; }
+    }
+
+    public class ProductoItem
+    {
+        public string? Nombre { get; set; }
+        public string? Categoria { get; set; }
+        public int Stock { get; set; }
+        public decimal Precio { get; set; }
+    }
+
+    // --- DATOS SIMULADOS ---
+    private List<AlertaProducto> AlertasInventario = new List<AlertaProducto>
+    {
+        new AlertaProducto { Color = "#dc3545", Cantidad = 15, Mensaje = "Productos Agotados", Subtitulo = "Requieren reorden inmediata" },
+        new AlertaProducto { Color = "#ffc107", Cantidad = 8, Mensaje = "Stock Crítico", Subtitulo = "Menos de 10 unidades" },
+        new AlertaProducto { Color = "#0dcaf0", Cantidad = 120, Mensaje = "Nuevas Reseñas", Subtitulo = "Pendientes de moderación" }
+    };
+
+    private List<ProductoItem> ProductosTop = new List<ProductoItem>
+    {
+        new ProductoItem { Nombre = "Echo Dot 5ta Gen", Categoria = "Electrónica", Stock = 145, Precio = 49.99m },
+        new ProductoItem { Nombre = "Soporte Monitor", Categoria = "Oficina", Stock = 8, Precio = 25.50m },
+        new ProductoItem { Nombre = "Mouse Logitech", Categoria = "Periféricos", Stock = 56, Precio = 12.99m },
+        new ProductoItem { Nombre = "Teclado Mecánico", Categoria = "Periféricos", Stock = 32, Precio = 89.00m },
+    };
 }

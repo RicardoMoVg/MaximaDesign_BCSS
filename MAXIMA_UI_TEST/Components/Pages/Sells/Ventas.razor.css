@@ -1,0 +1,121 @@
+/* Reutilizamos las clases del sistema de diseño */
+.dashboard-container {
+    background-color: #1a1a27;
+    min-height: 100vh;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    display: grid;
+    grid-template-columns: 1.2fr 3fr;
+    /* Misma proporción que Compras */
+    gap: 25px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Tarjetas */
+.card {
+    border-radius: 16px;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.white-card {
+    background-color: #ffffff;
+    color: #333;
+}
+
+.dark-card {
+    background-color: #1e2a38;
+    color: #fff;
+}
+
+.tall-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Grid de Estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #aab2bd;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+/* Atajos */
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.shortcut-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    transition: transform 0.2s;
+}
+
+.shortcut-btn:hover {
+    transform: translateY(-5px);
+}
+
+.shortcut-btn span {
+    font-weight: 600;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Iconos */
+.icon-container {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.blue-icon {
+    color: #4a90e2;
+}
+
+.green-icon {
+    color: #50e3c2;
+}
+
+.orange-icon {
+    color: #f5a623;
+}
+
+/* Tipografía */
+.x-small {
+    font-size: 0.75rem;
+}
