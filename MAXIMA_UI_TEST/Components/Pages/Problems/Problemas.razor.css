@@ -1,0 +1,10 @@
+.hover-link:hover {
+    color: #0d6efd !important;
+    /* Azul Bootstrap al pasar el mouse */
+    text-decoration: underline !important;
+    transition: color 0.2s ease;
+}
+
+.tracking-wide {
+    letter-spacing: 1.5px;
+}

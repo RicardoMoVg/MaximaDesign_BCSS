@@ -1,11 +1,52 @@
 ﻿@page "/Problems"
 @rendermode InteractiveServer
 @using MaximaDesignSystem
+@using MaximaDesignSystem.MB_Library
 @inject NavigationManager Navigation
 
+<PageTitle>Soporte y Problemas</PageTitle>
 
-<h3>Problemas</h3>
+<div class="dashboard-container d-flex align-items-center justify-content-center">
+    
+    <div class="card white-card p-5 text-center shadow animate-fade-in" style="max-width: 600px; width: 100%;">
+        
+        <div class="mb-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-danger bg-opacity-10 text-danger" style="width: 80px; height: 80px;">
+                <i class="bi bi-life-preserver fs-1"></i>
+            </div>
+        </div>
+
+        <h2 class="fw-bold text-dark mb-3">¿Necesitas ayuda?</h2>
+        <p class="text-muted mb-4 fs-5">
+            Si encontraste un error en el sistema o tienes problemas con tu cuenta, 
+            por favor ponte en contacto con la administración.
+        </p>
+
+        <div class="p-4 bg-light rounded border border-secondary-subtle mb-4 position-relative overflow-hidden">
+            <div class="position-absolute top-0 start-0 bottom-0 bg-dark" style="width: 5px;"></div>
+            
+            <p class="mb-1 small text-uppercase fw-bold text-secondary tracking-wide">Correo de Soporte Técnico</p>
+            <a href="mailto:soporte@maxima.com" class="fs-3 fw-bold text-dark text-decoration-none hover-link">
+                soporte@maxima.com
+            </a>
+            <div class="mt-2 text-muted small">
+                <i class="bi bi-clock me-1"></i> Respuesta estimada: 24 horas
+            </div>
+        </div>
+
+        <div>
+            <MbButton Color="MbButton.ButtonColor.Light" Class="border px-4 py-2" OnClick="@VolverAlInicio">
+                <i class="bi bi-arrow-left me-2"></i> Volver al Dashboard
+            </MbButton>
+        </div>
+
+    </div>
+
+</div>
 
 @code {
-
+    private void VolverAlInicio()
+    {
+        Navigation.NavigateTo("/home");
+    }
 }
