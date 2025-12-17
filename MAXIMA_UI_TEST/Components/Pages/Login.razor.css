@@ -1,0 +1,85 @@
+/* --- Sección Izquierda (Branding) --- */
+.branding-section {
+    background-color: #1a1a27;
+    /* Tu color corporativo oscuro */
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+/* Decoración de fondo (Efecto moderno) */
+.circle-decor {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.15;
+}
+
+.circle-1 {
+    width: 300px;
+    height: 300px;
+    background-color: #4a90e2;
+    /* Azul */
+    top: -50px;
+    left: -50px;
+}
+
+.circle-2 {
+    width: 400px;
+    height: 400px;
+    background-color: #50e3c2;
+    /* Verde */
+    bottom: -100px;
+    right: -100px;
+}
+
+/* --- Sección Derecha (Formulario) --- */
+.login-form-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+/* Estilos de Inputs Modernos */
+.form-control,
+.input-group-text {
+    border-color: #eef1f5;
+    /* Borde muy sutil */
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #1a1a27;
+    /* Color oscuro al enfocar */
+    background-color: #fff !important;
+}
+
+.input-group-text {
+    background-color: #f8f9fa;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+    font-size: 0.9rem;
+}
+
+/* Animación de entrada */
+.animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

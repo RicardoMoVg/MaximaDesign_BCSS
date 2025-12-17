@@ -24,7 +24,7 @@
     public List<string> Opciones { get; set; } = new();
 
     [Parameter]
-    public string OpcionSeleccionada { get; set; }
+    public string OpcionSeleccionada { get; set; } = string.Empty;
 
     [Parameter]
     public EventCallback<string> OnSeleccion { get; set; }

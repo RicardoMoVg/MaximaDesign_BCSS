@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/Home"
 @rendermode InteractiveServer
 @using MaximaDesignSystem
 @using MaximaDesignSystem.MB_Library
@@ -144,12 +144,12 @@
 @code {
     public class Tarea
     {
-        public string Id { get; set; }
-        public string Departamento { get; set; }
-        public string Usuario { get; set; }
-        public string Asunto { get; set; }
-        public string Fecha { get; set; }
-        public string EstadoTiempo { get; set; }
+        public required string Id { get; set; }
+        public required string Departamento { get; set; }
+        public required string Usuario { get; set; }
+        public required string Asunto { get; set; }
+        public required string Fecha { get; set; }
+        public required string EstadoTiempo { get; set; }
     }
 
     private List<Tarea> TareasList = new List<Tarea>

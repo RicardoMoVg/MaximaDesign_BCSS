@@ -37,18 +37,18 @@
 @code {
     // 1. La lista de datos (puede ser Productos, Usuarios, etc.)
     [Parameter]
-    public IEnumerable<TItem> Items { get; set; }
+    public required IEnumerable<TItem> Items { get; set; }
 
     // 2. El contenido de la cabecera (<th>...</th>)
     [Parameter]
-    public RenderFragment HeaderContent { get; set; }
+    public required RenderFragment HeaderContent { get; set; }
 
     // 3. La plantilla de cómo se ve cada fila (<td>...</td>)
     // Recibe el objeto TItem para que puedas acceder a sus propiedades (item.Nombre, item.Precio)
     [Parameter]
-    public RenderFragment<TItem> RowTemplate { get; set; }
+    public required RenderFragment<TItem> RowTemplate { get; set; }
 
     // 4. Clases CSS extra opcionales
     [Parameter]
-    public string Class { get; set; }
+    public string Class { get; set; } = "";
 }

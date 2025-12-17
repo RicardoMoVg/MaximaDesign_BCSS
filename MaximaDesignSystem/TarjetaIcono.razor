@@ -13,6 +13,6 @@
 </style>
 
 @code {
-    [Parameter] public string Titulo { get; set; }
-    [Parameter] public RenderFragment Icono { get; set; }
+    [Parameter] public required string Titulo { get; set; }
+    [Parameter] public required RenderFragment Icono { get; set; }
 }

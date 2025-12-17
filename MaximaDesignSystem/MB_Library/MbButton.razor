@@ -1,0 +1,42 @@
+
+<button class="btn @GetColorClass() @Class" @attributes="AdditionalAttributes" @onclick="OnClick">
+    @ChildContent
+</button>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public ButtonColor Color { get; set; } = ButtonColor.Primary;
+    [Parameter] public string Class { get; set; } = "";
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)] public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    public enum ButtonColor
+    {
+        Primary,
+        Secondary,
+        Success,
+        Danger,
+        Warning,
+        Info,
+        Light,
+        Dark,
+        Link
+    }
+
+    private string GetColorClass()
+    {
+        return Color switch
+        {
+            ButtonColor.Primary => "btn-primary",
+            ButtonColor.Secondary => "btn-secondary",
+            ButtonColor.Success => "btn-success",
+            ButtonColor.Danger => "btn-danger",
+            ButtonColor.Warning => "btn-warning",
+            ButtonColor.Info => "btn-info",
+            ButtonColor.Light => "btn-light",
+            ButtonColor.Dark => "btn-dark",
+            ButtonColor.Link => "btn-link",
+            _ => "btn-primary"
+        };
+    }
+}

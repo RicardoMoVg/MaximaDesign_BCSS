@@ -1,0 +1,108 @@
+/* Layout Principal */
+.dashboard-container {
+    background-color: #f8f9fa;
+    /* Fondo gris muy claro como en la imagen */
+    min-height: 100vh;
+    padding: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tarjetas */
+.white-card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Atajos */
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2x2 grid */
+    gap: 15px;
+}
+
+.shortcut-btn {
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 140px;
+}
+
+.shortcut-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Tablas */
+.table thead th {
+    font-size: 0.8rem;
+    padding: 8px;
+    background-color: #1a1f24;
+    /* Color oscuro exacto */
+}
+
+.letter-spacing {
+    letter-spacing: 1px;
+}
+
+/* Gráfico Circular (Donut) con CSS Puro */
+.donut-chart {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    /* Truco: Gradiente cónico para simular segmentos */
+    background: conic-gradient(#28a745 0% 52%,
+            /* Verde (Auditoría) */
+            #ffc107 52% 72%,
+            /* Amarillo (Reservados) */
+            #343a40 72% 95%,
+            /* Azul Oscuro (Disponible) */
+            #dc3545 95% 100%
+            /* Rojo (Daños) */
+        );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Agujero del donut */
+.donut-chart::before {
+    content: "";
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+}
+
+.center-text {
+    position: relative;
+    z-index: 10;
+}
+
+/* Gráfico de Líneas (SVG) */
+.chart-area {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.chart-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Tipografía */
+.x-small {
+    font-size: 0.7rem;
+}
